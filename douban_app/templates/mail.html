@@ -1,0 +1,77 @@
+{%  load static  %}
+
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>电影可视化</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="{% static 'plugins/fontawesome/js/all.min.js' %}"></script>
+    
+    <!-- App CSS -->  
+    <link id="theme-style" rel="stylesheet" href="{% static 'css/portal.css' %}">
+
+</head> 
+
+<body class="app app-reset-password p-0">    	
+    <div class="row g-0 app-auth-wrapper">
+	    <div class="col-12 col-md-7 col-lg-6 auth-main-col text-center p-5">
+		    <div class="d-flex flex-column align-content-end">
+			    <div class="app-auth-body mx-auto">	
+				    <div class="app-auth-branding mb-4"><a class="app-logo" href="/index/"><img class="logo-icon me-2" src="{% static 'img/app-logo.svg' %}" alt="logo"></a></div>
+					<h2 class="auth-heading text-center mb-4">激活邮箱</h2>
+
+					<div class="auth-intro mb-4 text-center">验证码已发到您的邮箱，请查看您的邮箱（若没有看见，它有可能在垃圾邮件中）。</div>
+	
+					<div class="auth-form-container text-left">
+						
+						<form class="auth-form resetpass-form" method="post" action="/user/sms_active/">   
+							{% csrf_token %}              
+							<div class="email mb-3">
+								<label class="sr-only" for="reg-email">Your code</label>
+								<input id="reg-email" name="code" type="text" class="form-control login-email" placeholder="Your Code" required="required">
+								<span style="color:red">{{ message }}</span>
+							</div><!--//form-group-->
+							<div class="text-center">
+								<button type="submit" class="btn app-btn-primary btn-block theme-btn mx-auto" >激活</button>
+							</div>
+						</form>
+						
+					</div><!--//auth-form-container-->
+
+
+			    </div><!--//auth-body-->
+		    
+			    <footer class="app-auth-footer">
+				    <div class="container text-center py-3">
+			         
+				    </div>
+			    </footer><!--//app-auth-footer-->	
+		    </div><!--//flex-column-->   
+	    </div><!--//auth-main-col-->
+	    <div class="col-12 col-md-5 col-lg-6 h-100 auth-background-col">
+		    <div class="auth-background-holder">
+		    </div>
+		    <div class="auth-background-mask"></div>
+		    <div class="auth-background-overlay p-3 p-lg-5">
+			    <div class="d-flex flex-column align-content-end h-100">
+				    <div class="h-100"></div>
+				</div>
+		    </div><!--//auth-background-overlay-->
+	    </div><!--//auth-background-col-->
+    
+    </div><!--//row-->
+
+
+</body>
+</html> 
+

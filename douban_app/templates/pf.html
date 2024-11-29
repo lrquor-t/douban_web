@@ -1,0 +1,131 @@
+{%  load static  %}
+<!DOCTYPE html>
+<!--suppress CssUnusedSymbol, JSUnresolvedLibraryURL -->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>电影可视化</title>
+	<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"> 
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/star-main.css' %}" media="all" type="text/css"/>
+    <script src="{% static 'js/jquery.js' %}"></script>
+<body>
+	<div class="container" style="width:70%;margin:0 auto;">
+		
+		
+		<div class="page-header">
+			<h2>开始评价</h2>
+		</div>
+		<form method="post" action="/score/{{ doubanId }}/submit/">
+			{% csrf_token %}
+			<div class="panel panel-default">
+			  <div class="panel-heading" style="font-size: 2rem;">评价等级&nbsp;<span style="color:red;">*</span>：
+				{% if message != "" %}
+				<span style="color:red" >
+					{{ message }}
+				</span>
+				{% endif %}
+			  </div>
+			  <div class="panel-body">
+						  <input name="starNum" id="starNum" type="hidden"/>
+						  <div class="starability-container">
+							   <fieldset class="starability-slot">
+									<input type="radio" id="rate_1_0_1_5" name="starLevel" value="5" /> 
+									<label for="rate_1_0_1_5" title="5星"></label>
+									<input type="radio" id="rate_1_0_1_4" name="starLevel" value="4" /> 
+									<label for="rate_1_0_1_4" title="4星"></label>
+									<input type="radio" id="rate_1_0_1_3" name="starLevel" value="3" /> 
+									<label for="rate_1_0_1_3" title="3星"></label>
+									<input type="radio" id="rate_1_0_1_2" name="starLevel" value="2" /> 
+									<label for="rate_1_0_1_2" title="2星"></label>
+									<input type="radio" id="rate_1_0_1_1" name="starLevel" value="1" /> 
+									<label for="rate_1_0_1_1" title="1星"></label>
+							   </fieldset>
+						  </div>
+						  <span style="font-size: 2rem;line-height: 2.9rem;padding: 1rem;font-style: oblique;" id="starStr"></span>
+			  </div>
+			</div>
+
+			
+			<div class="page-header">
+				<h3>评价内容：</h3>
+			</div>
+			<textarea id="customerEvaluationComment" name="customerEvaluationComment"
+				class="form-control" rows="10" style="min-width: 20%;font-size: 1rem;width: 30rem;height: 10rem !important;"></textarea>
+			
+			<br/>
+			
+			<p class="submit_btn">
+				<button type="submit" class="btn btn-primary btn-lg btn-block" onclick="evaluation();">
+	　　　提交　　　
+				</button>
+				<button type="button" class="btn btn-default btn-lg btn-block"  onclick="closed();">
+	　　　关闭　　　
+				</button>
+			</p>
+		</form>
+	</div>
+</body>
+
+
+<script>
+	
+	
+	$('[name="starLevel"]').bind("click",function(){
+		console.log($(this)[0].value)
+		$("#starNum").val($(this)[0].value)
+		var starNum = $(this)[0].value;
+		if(starNum == 1) $("#starStr").text("差");
+		if(starNum == 2) $("#starStr").text("较差");
+		if(starNum == 3) $("#starStr").text("还行");
+		if(starNum == 4) $("#starStr").text("推荐");
+		if(starNum == 5) $("#starStr").text("力荐");
+	})
+	
+	
+
+	// 提交评论
+	function evaluation() {
+		//评价等级
+		
+		var customerEvaluationLevel = $('#starNum').val();
+		
+		if (customerEvaluationLevel == undefined || customerEvaluationLevel == null || customerEvaluationLevel == '') {
+			alert('请将评价等级选好再提交哦！');
+			event.preventDefault()
+			return false;
+		}
+		
+		
+	}
+	function closed() {
+		window.location.href=localStorage.getItem("search_url");
+	}
+	
+	
+  
+</script>
+
+
+
+<style>
+	.page-header{
+		padding-bottom: 1px !important;
+    	margin: 18px 0 20px !important;
+	}
+	.submit_btn{
+		width: 100%;
+	}
+	.textarea.form-control{
+		height: 28rem !important;
+	}
+	h3{
+		font-size: 22px;
+	}
+	
+	h2{
+		font-size: 19px;
+	}
+</style>
+</html>

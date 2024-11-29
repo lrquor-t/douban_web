@@ -97,18 +97,6 @@ WSGI_APPLICATION = "douban_web.wsgi.application"
 # }
 
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.mysql",
-#         "NAME": "db_douban",
-#         "USER": "louzin",
-#         "PASSWORD": "1202Wh..",
-#         "HOST": "82.157.63.225",
-#         "POST": 3306,
-#     }
-# }
-
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
@@ -120,16 +108,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.mysql",
-#         "NAME": "db_douban",
-#         "USER": "root",
-#         "PASSWORD": "root",
-#         "HOST": "localhost",
-#         "POST": 3306,
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

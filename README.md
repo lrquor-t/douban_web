@@ -24,4 +24,6 @@ python manage.py runserver
 ```
 
 # 创建管理员
+```
 python manage.py createsuperuser
+```
